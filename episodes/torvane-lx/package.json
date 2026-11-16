@@ -1,0 +1,20 @@
+{
+  "name": "torvane-lx-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Torvane LX — ball-screw linear stage 3D demo (Three.js + GSAP, deterministic frame-by-frame render)",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "stills": "node scripts/render.mjs --stills 0,2.5,5,8,11,15,19,22,24.9",
+    "render": "node scripts/render.mjs --format both",
+    "render:landscape": "node scripts/render.mjs --format landscape",
+    "render:portrait": "node scripts/render.mjs --format portrait",
+    "vendor": "node scripts/vendor.mjs"
+  },
+  "devDependencies": {
+    "gsap": "3.12.5",
+    "puppeteer": "^23.10.0",
+    "three": "0.170.0"
+  }
+}

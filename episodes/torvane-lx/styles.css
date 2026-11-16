@@ -1,0 +1,66 @@
+:root {
+  --ink: #0B0A09; --warm: #5C463B; --copper-1: #A94E32; --copper-2: #D87349; --copper-3: #E8A177; --ice: #9FD8FF;
+  --radius-lg: 20px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+body { font-family: 'Inter', 'Noto Sans TC', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+body.live { background: linear-gradient(135deg, var(--ink) 0%, #15110f 60%, #2a201b 100%); }
+
+#frame { position: absolute; left: 50%; top: 0; transform: translateX(-50%); overflow: hidden; background: #000; }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#ui { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+
+.vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 46%, rgba(0,0,0,0) 52%, rgba(0,0,0,.6) 100%); }
+.leaders { position: absolute; inset: 0; overflow: visible; }
+.leaders path { fill: none; stroke: rgba(255,255,255,.6); stroke-width: 1.5; stroke-dasharray: 1; }
+.leaders .dot { fill: var(--ice); }
+.leaders .ring { fill: none; stroke: var(--ice); stroke-opacity: .45; stroke-width: 1.5; }
+
+/* The Demo tag sits in a corner for the whole film */
+.tag {
+  position: absolute; left: 64px; top: 54px; padding: 9px 18px 10px; border: 1px solid rgba(255,255,255,.34); border-radius: 999px;
+  font-size: 24px; font-weight: 500; letter-spacing: .1em; color: rgba(255,255,255,.82); background: rgba(0,0,0,.35);
+}
+.portrait .tag { left: 56px; top: 150px; }
+
+.label { position: absolute; width: max-content; max-width: 420px; will-change: transform, opacity; }
+.label.r { text-align: right; }
+.label .en { font-size: 15px; font-weight: 600; letter-spacing: .2em; color: var(--copper-3); }
+.label .zh { font-size: 38px; font-weight: 700; line-height: 1.22; letter-spacing: .04em; margin-top: 4px; }
+.label .fn { font-size: 21px; font-weight: 400; line-height: 1.35; color: rgba(255,255,255,.7); margin-top: 3px; letter-spacing: .03em; }
+.portrait .label { max-width: 300px; }
+.portrait .label .en { font-size: 14px; letter-spacing: .16em; }
+.portrait .label .zh { font-size: 36px; }
+.portrait .label .fn { font-size: 21px; }
+
+.title { position: absolute; left: 0; right: 0; bottom: 84px; text-align: center; }
+.portrait .title { bottom: 330px; }
+.title .brand { font-size: 128px; font-weight: 600; line-height: 1; letter-spacing: -.01em; white-space: nowrap; }
+.portrait .title .brand { font-size: 136px; }
+.title .brand span { background: linear-gradient(100deg, var(--copper-1), var(--copper-2) 45%, var(--copper-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.title .rule { width: 88px; height: 2px; margin: 26px auto 22px; background: linear-gradient(90deg, var(--copper-1), var(--copper-3)); transform-origin: 50% 50%; }
+.title .tagline { font-size: 30px; font-weight: 500; letter-spacing: .34em; padding-left: .34em; color: rgba(255,255,255,.86); }
+.title .endtag { font-size: 23px; font-weight: 500; letter-spacing: .14em; margin-top: 16px; color: var(--copper-3); }
+
+/* Live page controls (never present in the captured film) */
+#controls {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px;
+  max-width: calc(100% - 24px); padding: 8px 12px; border-radius: var(--radius-lg); background: rgba(20,16,14,.86);
+  border: 1px solid rgba(232,161,119,.22); backdrop-filter: blur(10px); font-size: 14px;
+}
+#controls[hidden] { display: none; }
+#controls button {
+  font: inherit; color: #f3e9e2; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px;
+  padding: 7px 12px; cursor: pointer; white-space: nowrap;
+}
+#controls button:hover { background: rgba(255,255,255,.12); }
+#controls button.primary, #controls button.on { background: linear-gradient(100deg, var(--copper-1), var(--copper-2)); border-color: transparent; color: #fff; }
+#controls input[type=range] { width: min(34vw, 420px); accent-color: var(--copper-2); }
+#controls #time { font-variant-numeric: tabular-nums; color: rgba(255,255,255,.7); min-width: 3.2em; }
+#controls .sep { width: 1px; height: 22px; background: rgba(255,255,255,.14); }
+@media (max-width: 720px) {
+  #controls { flex-wrap: wrap; justify-content: center; }
+  #controls input[type=range] { width: 46vw; }
+  #controls .sep { display: none; }
+}
